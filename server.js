@@ -8,8 +8,9 @@ import fs from 'fs'
 import path from 'path'
 import URL from 'url'
 
-import User from './models/user.js'
+import User from './models/users.js'
 import authRouter from './controllers/auth.js'
+import userRouter from './controllers/users.js'
 
 import passUserToView from './middleware/pass-user-to-view.js'
 import passMessageToView from './middleware/pass-message-to-view.js'
@@ -25,7 +26,6 @@ let photos  = fs.readdirSync(photoPath);
 landingPageImages = photos
 
 
-console.log (photos)
 //Create the app
 const app = express()
 
@@ -46,6 +46,7 @@ app.use(passMessageToView)
 
 //Assign routers
 app.use ('/auth', authRouter)
+app.use ('/users', userRouter)
 //Routes
 
 //Create a landing page

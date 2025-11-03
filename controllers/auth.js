@@ -1,6 +1,6 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
-import User from '../models/user.js'
+import User from '../models/users.js'
 import isSignedIn from '../middleware/is-signed-in.js'
 
 
@@ -19,6 +19,8 @@ router.post('/', async (req, res) => {
     const email = newUser.email
     const password = newUser.password
     const confirmPassword = newUser.confirmPassword
+    req.body.isMinder = !!req.body.isMinder
+    req.body.hasPets  =!!req.body.hasPets 
     try {
         //Check if the passwords match
         if (password != confirmPassword) {
@@ -45,10 +47,11 @@ router.post('/', async (req, res) => {
 
         // Add the new user to the database
         const createdUser = await User.create(req.body)
-        res.redirect('auth/sign-in')
+        req.session.message = `Registration was successful. Welcome to the club ${username}`
+        res.redirect('auth/sign-in', {username:username, password: password })
     }
     catch (error) {
-        log.error(error)
+        console.error(error)
         req.session.message = `Something went wrong during sign-up. Please try again later`
         return res.redirect('/auth/sign-up')
     }
