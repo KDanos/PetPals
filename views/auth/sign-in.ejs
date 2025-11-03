@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-in</title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<%- include ('../partials/_navbar.ejs') %>
+<body>
+    <form action="/auth/sign-in" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="e.g. ILikePuppies" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit" id="sign-up-button">Sign-in</button>
+        <p class="auth-error"> <%= (message) %> </p>
+    </form>
+</body>
+</html>

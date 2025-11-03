@@ -1,0 +1,54 @@
+import express from 'express'
+import morgan from 'morgan'
+import mongoose from 'mongoose'
+import 'dotenv/config'
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
+
+import User from './models/user.js'
+import authRouter from './controllers/auth.js'
+
+import passUserToView from './middleware/pass-user-to-view.js'
+import passMessageToView from './middleware/pass-message-to-view.js'
+
+//Create the app
+const app = express()
+
+//Middleware
+app.use(morgan('dev'))
+app.use(express.static('public'))
+app.use(express.urlencoded())
+app.use(session({
+    secret:process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true, 
+    store: MongoStore.create({mongoUrl: process.env.MONGODB_URI})
+}))
+//Custom made middleware
+app.use(passUserToView)
+app.use(passMessageToView)
+
+
+//Assign routers
+app.use ('/auth', authRouter)
+//Routes
+//Create a landing page
+app.get('/', (req,res)=>{
+    res.render('index.ejs')
+})
+
+//connections
+const connect = async ()=>{
+    const activePort = (process.env.PORT) ? process.env.PORT : 3000
+    try {
+        await mongoose.connect(process.env.MONGODB_URI)
+        console.log ('We have succesfully connected to the database')
+        app.listen(activePort, ()=> {console.log(`Konstantin's new authentication app is active on port ${activePort}`)})
+    } catch {
+        console.log('We have failed to connect to the database')
+    }
+}
+
+connect()
+
+
