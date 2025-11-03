@@ -4,6 +4,9 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
+import fs from 'fs'
+import path from 'path'
+import URL from 'url'
 
 import User from './models/user.js'
 import authRouter from './controllers/auth.js'
@@ -11,6 +14,18 @@ import authRouter from './controllers/auth.js'
 import passUserToView from './middleware/pass-user-to-view.js'
 import passMessageToView from './middleware/pass-message-to-view.js'
 
+
+
+//Import the image
+let landingPageImages = []
+const filename = URL.fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+const photoPath = path.join(dirname, 'public', 'images', 'Landing Page Images')
+let photos  = fs.readdirSync(photoPath);
+landingPageImages = photos
+
+
+console.log (photos)
 //Create the app
 const app = express()
 
@@ -32,9 +47,10 @@ app.use(passMessageToView)
 //Assign routers
 app.use ('/auth', authRouter)
 //Routes
+
 //Create a landing page
 app.get('/', (req,res)=>{
-    res.render('index.ejs')
+   res.render('index.ejs', {photosArray:landingPageImages })
 })
 
 //connections
