@@ -16,21 +16,16 @@
             <% if (user) {%>
                 <%= user.username %>
                     <% } %>
-                        !
         </h1>
-
         <div>
             <p>Where we bring pets, owners and minders together</p>
-
             <p>Showcase your fairy, scaly or winged family memebers</p>
-
             <p>Let fellow animal lovers know you are availbale to take care of their loved ones when its time or need to be away</p>
             
         </div>
-
         <div class="row custom-masonry-container">
             <% photosArray.forEach((imgName)=>{ %>
-                <div class="col-lg-3 col-md-6 mb-3">
+                <div class="col-lg-3 col-md-6 mb-3" style="break-inside: avoid;">
                     <div class="image-wrapper">
                         <img src="/images/Landing Page Images/<%= imgName %>"
                             alt="<%= imgName.replace(/\.(jpe?g)$/i, '').replace(/_/g, ' ') %>" loading="lazy"
