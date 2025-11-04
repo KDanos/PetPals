@@ -47,8 +47,14 @@ router.post('/', async (req, res) => {
 
         // Add the new user to the database
         const createdUser = await User.create(req.body)
+        
+        //The user is automatically logged in
+        req.session.user ={
+            _id: createdUser.id,
+            username: createdUser.username
+        }
         req.session.message = `Registration was successful. Welcome to the club ${username}`
-        res.redirect('auth/sign-in', {username:username, password: password })
+        req.session.save(() => res.redirect('/'))
     }
     catch (error) {
         console.error(error)
@@ -100,6 +106,14 @@ router.post('/sign-in', async (req, res) => {
 
 //Sign-out a user
 router.get('/sign-out', isSignedIn, (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
+})
+
+//Delete a user
+router.delete('/delete', isSignedIn, async (req, res) => {   
+    const userId = req.session.user._id
+   await User.findByIdAndDelete(userId)
     req.session.destroy()
     res.redirect('/')
 })

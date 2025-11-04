@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Pets</title>
     <link rel="stylesheet" href="/stylesheets/forms.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
-
+<%- include ('../partials/_navbar_KD.ejs') %>
 <body>
-    <%- include ('../partials/_navbar.ejs') %>
-    <h1>Lets have a look at all our users</h1>
-    <% users.forEach(user=>{ %>
+    <h1>Lets have a look at all our pets</h1>
+    <% pets.forEach(pet=>{ %>
         <ul>
             <li>
-                <a href="users/<%= user._id %>"><%= user.username %></a>
+                <a href="pets/<%= pet._id %>"><%= pet.name %></a>
             </li>
         </ul>
     <% }) %>

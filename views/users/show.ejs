@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>
+        <%= user.username %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <%- include ('../partials/_navbar_KD.ejs') %>
+        <h1>Welcome to the User Profile</h1>
+        <form action="/users/<%= user._id %>/edit?_method=EDIT" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<%= user.username %>" required>
+            <label for="email">email:</label>
+            <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            <label for="password">Password (leave it empty if you dont want to update it)</label>
+            <input type="password" id="password" name="password">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <label for="addPet">Do you want to edit your pets?</label>
+
+
+            <div>
+                <label for="isMinder">
+                    <% if (!user.isMinder) { %>
+                        Do you want to change you minder status?
+                </label>
+                <input type="checkbox" id="isMinder" name="isMinder">
+                <% } else { %>
+                    <button type="submit">Change the serices I offer</button>
+                <% } %>
+                <button type="submit">Edit my pets details</button>
+
+
+            </div>
+
+            <button type="submit" id="edit_user-detials-button">Update Details</button>
+            <p class="auth-error">
+                <%= (message) %>
+            </p>
+        </form>
+</body>
+
+</html>

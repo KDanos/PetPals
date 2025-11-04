@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/stylesheets/navbar.css">
+
+<nav class="simple-nav">
+    <div class="nav-left">
+        <a href="/">Home</a>
+        <a href="/pets">View our pet family</a>
+        <a href="/carers">View our carers</a>
+
+    </div>
+    <div class="nav-right">
+        <% if (user) { %>
+            <div class="user-info">
+                <div class="user-display">
+                    <span class="user-icon">👤</span>
+                    <span>
+                        <%= user.username %>
+                    </span>
+                </div>
+                <a href="/auth/sign-out" class="sign-out-link">Sign-out</a>
+                <a href="/users/<%= user._id%>">View Profile</a>
+                <form class="delete-form" action="/auth/delete?_method=DELETE" method="POST">
+
+                    <button type="submit" class="sign-out-link"
+                        onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.')">
+                        Delete Account
+                    </button>
+
+                </form>
+
+            </div>
+            <% } else { %>
+                <a href="/auth/sign-in">Sign in</a>
+                <a href="/auth/sign-up">Sign up</a>
+                <% } %>
+    </div>
+</nav>

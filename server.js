@@ -7,10 +7,15 @@ import MongoStore from 'connect-mongo'
 import fs from 'fs'
 import path from 'path'
 import URL from 'url'
+import methodOverride from 'method-override'
 
 import User from './models/users.js'
+
 import authRouter from './controllers/auth.js'
 import userRouter from './controllers/users.js'
+import petRouter from './controllers/pets.js'
+import carerRouter from './controllers/carers.js'
+
 
 import passUserToView from './middleware/pass-user-to-view.js'
 import passMessageToView from './middleware/pass-message-to-view.js'
@@ -39,6 +44,7 @@ app.use(session({
     saveUninitialized: true, 
     store: MongoStore.create({mongoUrl: process.env.MONGODB_URI})
 }))
+app.use(methodOverride('_method'))
 //Custom made middleware
 app.use(passUserToView)
 app.use(passMessageToView)
@@ -47,6 +53,8 @@ app.use(passMessageToView)
 //Assign routers
 app.use ('/auth', authRouter)
 app.use ('/users', userRouter)
+app.use('/pets', petRouter)
+app.use('/carers', carerRouter)
 //Routes
 
 //Create a landing page
