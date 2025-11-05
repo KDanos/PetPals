@@ -1,0 +1,86 @@
+.carers-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.carer-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* transition: transform 0.2s, box-shadow 0.2s; */
+    height: 100%;
+}
+
+
+.carer-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.carer-icon-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 1rem;
+    color: white;
+}
+
+.carer-container h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.carer-container a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.carer-card-link:hover h3 {
+    color: #f5576c;
+}
+
+.carer-email {
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.carer-badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+
+.badge-custom {
+    background: #fff3e0;
+    color: #e65100;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badge-verified {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+@media (max-width: 768px) {
+    .carers-container {
+        padding: 0 1rem 1rem;
+    }
+}

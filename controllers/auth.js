@@ -43,7 +43,6 @@ router.post('/', async (req, res) => {
 
         //Hash the password
         req.body.password = bcrypt.hashSync(password, 12)
-        console.log(`The hash password is ${req.body.password}. The original value was ${password}`)
 
         // Add the new user to the database
         const createdUser = await User.create(req.body)

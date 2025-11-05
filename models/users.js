@@ -21,12 +21,21 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     hasPets: {
-        type: Boolean, 
-        required: true, 
+        type: Boolean,
+        required: true,
         default: false
     },
-    intro: {type: String},
-    postCode: {type: String},
+    pets: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Pet'
+    },
+    services: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Service'
+    },
+
+    intro: { type: String },
+    postCode: { type: String },
 })
 
 const User = mongoose.model('User', userSchema)

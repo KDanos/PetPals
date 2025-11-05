@@ -9,7 +9,15 @@ form:not(.delete-form) {
     flex-direction: column;
 }
 
-lable, input {
+.form-container-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+label, input {
     margin-bottom: 5px;
 }
 
