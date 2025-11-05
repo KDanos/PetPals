@@ -79,12 +79,18 @@ router.put('/:userId/edit', isSignedIn, async (req, res) => {
 
 //Go to the view Pets page
 router.get('/:userId/pets', isSignedIn, async (req, res) => {
-    
     const userId = req.params.userId
-    const fullUser = await User.findById(userId).populate('pets')
-    
+    const fullUser = await User.findById(userId).populate('pets')   
     // res.send('you are correctly working the view pets profile button')
     res.render('users/pets.ejs', {user:fullUser})
+})
+
+//Go to the view Services page
+router.get('/:userId/services', isSignedIn, async (req, res) => {
+    const userId = req.params.userId
+    const fullUser = await User.findById(userId) 
+    // res.send('you are correctly working the view pets profile button')
+    res.render('users/servicess.ejs', {user:fullUser})
 })
 
 //Export the router
