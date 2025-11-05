@@ -10,6 +10,7 @@ import URL from 'url'
 import methodOverride from 'method-override'
 
 import User from './models/users.js'
+import serviceType from './models/serviceTypes.js'
 
 import authRouter from './controllers/auth.js'
 import userRouter from './controllers/users.js'

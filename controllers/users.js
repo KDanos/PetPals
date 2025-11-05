@@ -2,6 +2,7 @@ import express from 'express'
 import User from '../models/users.js'
 import isSignedIn from '../middleware/is-signed-in.js'
 import bcrypt from 'bcrypt'
+import ServiceType from '../models/serviceTypes.js'
 
 //Define the router
 const router = express.Router()
@@ -80,7 +81,7 @@ router.put('/:userId/edit', isSignedIn, async (req, res) => {
 router.get('/:userId/pets', isSignedIn, async (req, res) => {
     
     const userId = req.params.userId
-    const fullUser = await User.findById(userId)
+    const fullUser = await User.findById(userId).populate('pets')
     
     // res.send('you are correctly working the view pets profile button')
     res.render('users/pets.ejs', {user:fullUser})
