@@ -27,11 +27,13 @@ const userSchema = new mongoose.Schema({
     },
     pets: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Pet'
+        ref: 'Pet',
+        default: []
     },
     services: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Service'
+        ref: 'Service',
+        default: []
     },
 
     intro: { type: String },

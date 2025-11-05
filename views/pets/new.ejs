@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Pet</title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+<%- include ('../partials/_navbar_KD.ejs') %>
+
+    <body>
+        <div class="form-container-center">
+            <form action="/pets" method="POST">
+                <label for="animal-name">Name:</label>
+                <input type="text" id="animal-name" name="name" placeholder="e.g. Rambo" required>
+                <label for="animal">What animal is it:</label>
+                <input type="text" id="animal-name" name="animal" placeholder="e.g Dog" required>
+                <button class ="profile-button" type="submit" id="new-animal-button">Add to your pets</button>
+                <p class="auth-error">
+                    <%= (message) %>
+                </p>
+            </form>
+        </div>
+    </body>
+
+</html>

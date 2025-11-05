@@ -1,5 +1,5 @@
 import express from 'express'
-import Pet from '../models/pets.js'
+import Services from '../models/pets.js'
 import User  from '../models/users.js'
 import isSignedIn from '../middleware/is-signed-in.js'
 

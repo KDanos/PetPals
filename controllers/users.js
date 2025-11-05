@@ -16,18 +16,17 @@ router.get('', isSignedIn, async (req, res) => {
 //Show Page, GET
 router.get('/:userID', isSignedIn, async (req, res) => {
     const currentUser = req.session.user
-    const fullUser = await User.findById(currentUser._id)
+    const fullUser = await User.findById(currentUser._id).populate('pets')
     res.render('users/view.ejs', { user: fullUser })
 })
 
 //Go to the edit form
 router.get('/:userId/edit', isSignedIn, async(req, res) => {
-    // res.send('you are correctly working the edit profile button')
     res.render('users/edit.ejs')
 })
 
 //Update
-//This route makes the changes to the data base
+//This route makes user changes to the data base
 router.put('/:userId/edit', isSignedIn, async (req, res) => {
     const userId = req.params.userId
     const username = req.body.username
@@ -76,5 +75,16 @@ router.put('/:userId/edit', isSignedIn, async (req, res) => {
         return res.redirect(`/users/${userId}`)
     }
 })
+
+//Go to the view Pets page
+router.get('/:userId/pets', isSignedIn, async (req, res) => {
+    
+    const userId = req.params.userId
+    const fullUser = await User.findById(userId)
+    
+    // res.send('you are correctly working the view pets profile button')
+    res.render('users/pets.ejs', {user:fullUser})
+})
+
 //Export the router
 export default router

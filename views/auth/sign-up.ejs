@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-up</title>
     <link rel="stylesheet" href="/stylesheets/forms.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
-<%- include ('../partials/_navbar.ejs') %>
-<body>
-    <form action="/auth" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="e.g. ILikePuppies" required>
-        <label for="email">email:</label>
-        <input type="email" id="email" name="email" placeholder="name@domain.com" required>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required>
-        <div>
-        <label for="isMinder">Are you planning to offer services to other pet onwners?</label>
-        <input type="checkbox" id="isMinder" name="isMinder" default="Off">        
+<%- include ('../partials/_navbar_KD.ejs') %>
+
+    <body>
+        <div class="form-container-center">
+            <form action="/auth" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="e.g. ILikePuppies" required>
+                <label for="email">email:</label>
+                <input type="email" id="email" name="email" placeholder="name@domain.com" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button class="profile-button" type="submit" id="sign-up-button">Sign-up</button>
+                <p class="auth-error">
+                    <%= (message) %>
+                </p>
+            </form>
         </div>
-        <div>
-        <label for="hasPets">Do you have pets that you want to regiser with PetPals?</label>
-        <input type="checkbox" id="hasPets" name="hasPets" checked> 
-        </div>
-        <button type="submit" id="sign-up-button">Sign-up</button>        
-        <p class="auth-error"> <%= (message) %> </p>
-    </form>
-</body>
+    </body>
+
 </html>

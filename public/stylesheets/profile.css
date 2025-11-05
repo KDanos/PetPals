@@ -113,6 +113,10 @@
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+
 }
 
 .profile-button:hover {

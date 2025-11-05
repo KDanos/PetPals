@@ -19,7 +19,7 @@
         <div class="profile-container">
             <h1>Welcome to the your profile page <%= user.username %>
             </h1>
-            <div="profile-content">
+            <div class="profile-content">
                 <div class="profile-item">
                     <div class="profile-card">
                         <div class="profile-icon">👤</div>
@@ -37,8 +37,7 @@
                                 <%= user.email %>
                             </span>
                         </div>
-                        <button class="profile-button" onclick="window.location.href='/users/<%=user._id%>/edit'">
-                            Edit Profile</button>
+                        <a class="profile-button" href='/users/<%=user._id%>/edit'>Edit Profile</a>
                     </div>
                     <!-- **********************new card************************************** -->
                     <div class="profile-card">
@@ -48,25 +47,32 @@
                                 <p> you have not pets listed</p>
                                 <% } else { %>
                                     <p> here are you pets</p>
-                                    <%} %>
+                                    <ul>
+                                        <% user.pets.forEach((animal)=>{ %>
+                                            <li>
+                                               <a href="/pets/<%=animal._id%>"> <%= animal.name %></a>
+                                            </li>
+                                            <% }) %>
+                                                <%} %>
+                                    </ul>
                         </div>
-                        <button class="profile-button">Edit Pets</button>
+                        <a class="profile-button" href='/users/<%=user._id%>/pets'>View/Edit Pets</a>
                     </div>
                     <!-- **********************new card************************************** -->
                     <div class="profile-card">
                         <div class="profile-icon">🦴</div>
                         <div class="profile-info">
-                            <% if (user.pets.services===0){ %>
+                            <% if (user.services===0){ %>
                                 <p> you have not services listed</p>
                                 <% } else { %>
                                     <p> here are you services</p>
                                     <%} %>
                         </div>
-                        <button class="profile-button">Edit Services</button>
+                        <a class="profile-button" href='/users/<%=user._id%>/services'>Edit Services</a>
                     </div>
 
                 </div>
-        </div>
+            </div>
 </body>
 
 </html>
