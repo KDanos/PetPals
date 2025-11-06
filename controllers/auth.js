@@ -9,7 +9,7 @@ const router = express.Router()
 
 //Sign-up page 
 router.get('/sign-up', (req, res) => {
-    res.render('auth/sign-up.ejs')
+        res.render('auth/sign-up.ejs')    
 })
 
 //Create a new user
@@ -19,8 +19,7 @@ router.post('/', async (req, res) => {
     const email = newUser.email
     const password = newUser.password
     const confirmPassword = newUser.confirmPassword
-    req.body.isMinder = !!req.body.isMinder
-    req.body.hasPets  =!!req.body.hasPets 
+
     try {
         //Check if the passwords match
         if (password != confirmPassword) {
@@ -58,7 +57,6 @@ router.post('/', async (req, res) => {
     catch (error) {
         console.error(error)
         req.session.message = `Something went wrong during sign-up. Please try again later`
-        return res.redirect('/auth/sign-up')
     }
 })
 

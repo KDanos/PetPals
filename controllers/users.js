@@ -8,22 +8,30 @@ import ServiceType from '../models/serviceTypes.js'
 const router = express.Router()
 
 //Index Page, GET
-//Show a list of all the users-might not be enabled on the final form
-router.get('', isSignedIn, async (req, res) => {
-    const users = await User.find()
-    res.render('users/index.ejs', { users })
+//Has replaced the 'show minders'
+router.get('/',  async (req, res) => {
+    const allUsers = await User.find()
+    res.render('users/index-v2.ejs', { allUsers })
 })
 
 //Show Page, GET
-router.get('/:userID', isSignedIn, async (req, res) => {
-    const currentUser = req.session.user
-    const fullUser = await User.findById(currentUser._id).populate('pets')
-    res.render('users/view.ejs', { user: fullUser })
+router.get('/:userId', async (req, res) => {
+
+    const viewUser = await User.findById(req.params.userId)    
+    
+    console.log('The equals function returns: ', viewUser.equals(req.session.user))
+
+    const fullUser = await User.findById(viewUser)
+        .populate('pets')
+        .populate('services')
+    res.render('users/show.ejs', { viewUser: fullUser })
 })
 
 //Go to the edit form
-router.get('/:userId/edit', isSignedIn, async(req, res) => {
-    res.render('users/edit.ejs')
+router.get('/:userId/edit', isSignedIn, async (req, res) => {
+    const fullUser = await User.findById(req.session.user._id)
+    console.log ('the fullUser is', fullUser)
+    res.render('users/edit.ejs', {user:fullUser})
 })
 
 //Update
@@ -34,9 +42,13 @@ router.put('/:userId', isSignedIn, async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
-    try {
-        const currentUser = await User.findById(userId)
+    
+    console.log('the req.body is ,',req.body)
+     console.log('the session user is, ',req.session.user)
+     console.log('the session user email is ', req.session.user.email)
 
+        const currentUser = await User.findById(userId)
+        
         //Check if the user has changed and is free
         const existingUser = await User.findOne({ username: username })
         if (existingUser && existingUser.username != username) {
@@ -46,47 +58,37 @@ router.put('/:userId', isSignedIn, async (req, res) => {
 
         //Check if the email is free
         const existingEmail = await User.findOne({ email: email })
-        if (existingEmail && existingUser.email != email) {
+        if (existingEmail && existingEmail.email != email) {
             req.session.message = `The email ${email} is already registered. Please select an alternative email!`
             return res.redirect(`/users/${userId}`)
         }
 
         //If the password field is empty, then keep the same hushed password
         if (req.body.password === '') {
-             req.body.password = currentUser.password
+            req.body.password = currentUser.password
         } else if (password != confirmPassword) {
             req.session.message = `The passwords do not match`
             return res.redirect(`/users/${userId}`)
         } else {
             req.body.password = bcrypt.hashSync(password, 12)
         }
-
+        //Update the database
         const user = await User.findByIdAndUpdate(userId, req.body)
+        //Update the session cookie, to ensure the changes are capures
+        req.session.user.username = username
+        
         req.session.message = `Your details have succesfully been updated: 
         <br> New username:  ${username}
         <br> New email:  ${email}`
         return res.redirect(`/users/${userId}`)
 
-    } catch (error) {
-        console.error(error)
-        req.session.message = `Something went wrong when updating the user information. Please try again`
-        return res.redirect(`/users/${userId}`)
-    }
 })
 
 //Go to the view Pets page
 router.get('/:userId/pets', isSignedIn, async (req, res) => {
     const userId = req.params.userId
-    const fullUser = await User.findById(userId).populate('pets')   
-    // res.send('you are correctly working the view pets profile button')
-    res.render('users/pets.ejs', {user:fullUser})
-})
-
-//Go to the view Services page
-router.get('/:userId/services', isSignedIn, async (req, res) => {
-    const userId = req.params.userId
-    const fullUser = await User.findById(userId) 
-    res.render('users/services.ejs', {user:fullUser})
+    const fullUser = await User.findById(userId).populate('pets')
+    res.render('users/pets.ejs', { user: fullUser })
 })
 
 //Export the router

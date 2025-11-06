@@ -1,10 +1,10 @@
 # 🐾 PetPals 🐾
 
-PetPals is a social network platform for pet owners. 
+A social network platform for pet owners. 
 
 #  Overview
 
-Owners can: 
+PetPals is a social network designed around pet lovers. Owners can: 
 - show case their pets, with photos and descriptions,
 - find minders-individuals who offer services to take care of their pets when help is needed,
 - offer their own services as minders, such as as: 
@@ -88,7 +88,12 @@ Potential upgrades and further development of the application include:
 - filter available minders based on location (post code).
 - add a profile photo for the user
 - add photo of the pet
--currently all flash messages, both error and success appear in red. It will be useful to have succesful messages appear in a different color
+- currently all flash messages, both error and success appear in red. It will be useful to have succesful messages appear in a different color
+- users should be able to attach a cost to the services they provide
+
+### Carers
+- when a user is adding a new serice to their profile, they are offered all the available serviceTypes defined in the model. That list should be filtered to exclude the services the user is already adding
+
 ### Pet owners
 - update stories with pictures of their activities.
 - chose whether the pet's index page is visible to users that are not logged-in

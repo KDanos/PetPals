@@ -8,7 +8,7 @@ const router = express.Router()
 
 //Index Page, GET
 router.get('', isSignedIn, async (req, res) =>{
-    // const carers = await User.find({isMinder: true})
+   
     const carers = await User.find()
     res.render('carers/index.ejs', {carers})
 })

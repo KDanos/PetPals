@@ -8,7 +8,8 @@ const router = express.Router()
 
 //Index Page, Get
 router.get('', async (req, res) => {
-    const pets = await Pet.find()
+    const pets = await Pet.find().populate('owner')
+    console.log ('the list of pets is ', pets)
     res.render('pets/index.ejs', { pets })
 })
 
@@ -54,8 +55,9 @@ router.put('/:petId', async (req, res) => {
 
 //View the profile of a single pet
 router.get('/:petId', async (req, res) => {
-    const pet = await Pet.findById(req.params.petId)
-    res.render('pets/view.ejs', { pet })
+    const pet = await Pet.findById(req.params.petId).populate('owner')
+    console.log ('pets looks like', pet)
+    res.render('pets/show.ejs', { pet })
 })
 
 

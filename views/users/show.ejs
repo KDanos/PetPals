@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>
+        <%= viewUser.username %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <%- include ('../partials/_navbar_KD.ejs') %>
+        <div class="profile-container">
+
+            <% if(viewUser.equals(user._id)){ %>
+                <h1>Welcome to the your profile page <%= user.username %>
+                </h1>
+                <% } else { %>
+                    <h1>
+                        <%= viewUser.username %> is happy to have you here!
+                    </h1>
+                    <% } %>
+
+                        <p class="auth-error">
+                            <%- (message) %>
+                        </p>
+                        <div class="profile-content">
+                            <div class="profile-item">
+                                <div class="profile-card">
+                                    <div class="profile-icon">👤</div>
+
+                                    <div class="profile-info">
+                                        <span class="profile-label">Username: </span>
+                                        <span class="profile-value">
+                                            <%= viewUser.username %>
+                                        </span>
+                                    </div>
+
+                                    <div class="profile-info">
+                                        <span class="profile-label">Email: </span>
+                                        <span class="profile-value">
+                                            <%= viewUser.email %>
+                                        </span>
+                                    </div>
+                                    <% if(viewUser.equals(user._id)){ %>
+                                        <a class="profile-button" href='/users/<%=viewUser._id%>/edit'>Edit Profile</a>
+                                        <% } %>
+                                </div>
+                                <!-- **********************new card************************************** -->
+                                <div class="profile-card">
+                                    <div class="profile-icon">🐾</div>
+                                    <div class="profile-info">
+                                        <% if (viewUser.pets.length===0){ %>
+                                            <p> you have not pets listed</p>
+                                            <% } else { %>
+                                                <p> here are you pets</p>
+                                                <ul>
+                                                    <% viewUser.pets.forEach((animal)=>{ %>
+                                                        <li>
+                                                            <a href="/pets/<%=animal._id%>">
+                                                                <%= animal.name %>
+                                                            </a>
+                                                        </li>
+                                                        <% }) %>
+                                                            <%} %>
+                                                </ul>
+                                    </div>
+                                    <% if(viewUser.equals(user._id)){ %>
+                                        <a class="profile-button" href='/users/<%=viewUser._id%>/pets'>View/Edit
+                                            Pets</a>
+                                        <% } %>
+                                </div>
+                                <!-- **********************new card************************************** -->
+                                <div class="profile-card">
+                                    <div class="profile-icon">🦴</div>
+                                    <div class="profile-info">
+                                        <% if (viewUser.services===0){ %>
+                                            <p> you have no services listed</p>
+                                            <% } else { %>
+                                                <p> here are you services</p>
+                                                <ul>
+                                                    <% viewUser.services.forEach(service=>{ %>
+                                                        <li>
+                                                            <%=service.name %>
+                                                        </li>
+                                                        <% })%>
+                                                </ul>
+                                                <%} %>
+                                    </div>
+                                    <% if(viewUser.equals(user._id)){ %>
+                                        <a class="profile-button" href='/services/new'>Edit Services</a>
+                                        <% } %>
+                                </div>
+
+                            </div>
+                        </div>
+</body>
+
+</html>

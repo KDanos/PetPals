@@ -15,7 +15,7 @@ import serviceType from './models/serviceTypes.js'
 import authRouter from './controllers/auth.js'
 import userRouter from './controllers/users.js'
 import petRouter from './controllers/pets.js'
-import carerRouter from './controllers/carers.js'
+// import carerRouter from './controllers/carers.js'
 import serviceRouter from './controllers/services.js'
 
 import passUserToView from './middleware/pass-user-to-view.js'
@@ -55,7 +55,7 @@ app.use(passMessageToView)
 app.use ('/auth', authRouter)
 app.use ('/users', userRouter)
 app.use('/pets', petRouter)
-app.use('/carers', carerRouter)
+// app.use('/carers', carerRouter)
 app.use('/services', serviceRouter)
 //Routes
 

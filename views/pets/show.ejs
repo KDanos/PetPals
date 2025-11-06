@@ -17,7 +17,9 @@
 <body>
     <%- include ('../partials/_navbar_KD.ejs') %>
         <div class="profile-container">
-            <h1> <%= pet.name %> welcomes you! </h1>
+            <h1>
+                <%= pet.name %> welcomes you!
+            </h1>
             <p class="auth-error">
                 <%- (message) %>
             </p>
@@ -39,7 +41,18 @@
                                 <%= pet.animal %>
                             </span>
                         </div>
-                        <a class="profile-button" href='/pets/<%=pet._id%>/edit'>Edit Information</a>
+
+                        <div class="profile-info">
+                            <span class="profile-label">Owner: </span>
+                            <span class="profile-value">
+                                <%= pet.owner.username %>
+                            </span>
+                        </div>
+
+                        <% if(pet.owner._id == user._id) { %>
+                             <a class="profile-button" href='/pets/<%=pet._id%>/edit'>Edit Information</a>
+                            <%} %>
+                               
                     </div>
                     <!-- **********************new card************************************** -->
                     <div class="profile-card">
@@ -52,16 +65,20 @@
                                     <ul>
                                         <% pet.minders.forEach((person)=>{ %>
                                             <li>
-                                               <a href="/pets/<%=person._id%>"> <%= person.username %></a>
+                                                <a href="/pets/<%=person._id%>">
+                                                    <%= person.username %>
+                                                </a>
                                             </li>
                                             <% }) %>
                                                 <%} %>
                                     </ul>
                         </div>
+                        <% if(pet.owner._id == user._id) { %>
                         <a class="profile-button" href='/users/<%=user._id%>/pets'>View/Edit Carers</a>
+                        <% } %>
                     </div>
                     <!-- **********************new card************************************** -->
-                    
+
 
                 </div>
             </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>
-        <%= user.username %>-My Pets>
+        <Our Pet Family>
     </title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/profile.css">
@@ -19,9 +19,9 @@
     <%- include ('../partials/_navbar_KD.ejs') %>
 
         <div class="welcome-section">
-                </h1>
-                <p class="subtitle">Browse through our friends: furry, scaly or winged friend!</p>
-                <p class="subtitle">Your beloved companions</p>           
+            <h1>Ready for cuddles</h1>
+            <p class="subtitle">Browse through our friends: furry, scaly or winged friend!</p>
+            <p class="subtitle">Your beloved companions</p>
         </div>
 
         <div class="profile-container">
@@ -54,8 +54,8 @@
                                 <div class="profile-value">
                                     <%= animal.animal %>
                                 </div>
-                                <div class="profile-badges">
-                                    <span class="badge-custom">🐾 Pet</span>
+                                <div class="profile-value">
+                                    <a href="/users/<%=animal.owner._id%>" ><%= animal.owner.username %></a>              
                                 </div>
                             </a>
                         </div>

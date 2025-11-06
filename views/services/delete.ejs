@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Service</title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+<%- include ('../partials/_navbar_KD.ejs') %>
+
+    <body>
+        <div class="form-container-center">
+            <form action="/services" method="POST">
+                <%if (!currentServices || currentServices.length===0){ %>
+                    <p> You are not currently offering any services</p>
+                    <a class="profile-button" href='/users/<%= user._id %>'>Go back to your profile</a>
+                    <% } else { %>
+                        <p class="profile-button">Click on the service you want to remove</p>
+                        <p> Your current services are:</p>
+                        <ul>
+                            <% currentServices.forEach((service)=>{ %>
+                                <li>
+                                    <a href="/services/<%=user._id%>/<%= service._id%>/delete">
+                                            <%=service.name%>
+                                    </a>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
+                            <p class="auth-error">
+                                <%= (message) %>
+                            </p>
+            </form>
+        </div>
+    </body>
+
+</html>
