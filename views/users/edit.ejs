@@ -16,7 +16,7 @@
     <%- include ('../partials/_navbar_KD.ejs') %>
 
         <div class="form-container-center">
-            < <form action="/users/<%= user._id %>/edit?_method=PUT" method="POST">
+                <form action="/users/<%= user._id %>?_method=PUT" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="<%= user.username %>" required>
                 <label for="email">email:</label>
@@ -25,8 +25,7 @@
                 <input type="password" id="password" name="password">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword">
-                <label for="addPet">Do you want to edit your pets?</label>
-                <button class="profile-button" type="submit" id="edit_user-detials-button">Update Details</button>
+                <button class="profile-button" type="submit" id="edit_user-details-button">Update Details</button>
                 <p class="auth-error">
                     <%- (message) %>
                 </p>

@@ -78,15 +78,17 @@ To make changes to the code, please clone the github repository. To succesfully 
 # :hammer_and_wrench: Future enhancements
 
 ## Known bugs
-- when a new user is registered, ticking both the options to offer services and have pets of their own, then the new user is registered to the database, but an error is caught, sending the user back to the sign-up page, despite the fact that the sign-up has been successful
+
 
 ## Additional functionality
 
-Potential upgrades and further develooment of the application include: 
+Potential upgrades and further development of the application include: 
 
 ### Tool functionality
 - filter available minders based on location (post code).
 - add a profile photo for the user
+- add photo of the pet
+-currently all flash messages, both error and success appear in red. It will be useful to have succesful messages appear in a different color
 ### Pet owners
 - update stories with pictures of their activities.
 - chose whether the pet's index page is visible to users that are not logged-in

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>
+        <%= pet.name %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+
+<body>
+    <%- include ('../partials/_navbar_KD.ejs') %>
+
+        <div class="form-container-center">
+            <form action="/pets/<%= pet._id %>?_method=PUT" method="POST">
+                <label for="animal-name">Name:</label>
+                <input type="text" id="animal-name" name="name" value="<%= pet.name %>" required>
+                <label for="animal">email:</label>
+                <input type="animal" id="animal" name="animal" value="<%= pet.animal %>" required>
+                <button class="profile-button" type="submit" id="edit_user-details-button">Update Details</button>
+                <p class="auth-error">
+                    <%- (message) %>
+                </p>
+            </form>
+        </div>
+</body>
+
+</html>

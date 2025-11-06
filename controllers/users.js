@@ -28,7 +28,7 @@ router.get('/:userId/edit', isSignedIn, async(req, res) => {
 
 //Update
 //This route makes user changes to the data base
-router.put('/:userId/edit', isSignedIn, async (req, res) => {
+router.put('/:userId', isSignedIn, async (req, res) => {
     const userId = req.params.userId
     const username = req.body.username
     const email = req.body.email
@@ -53,9 +53,7 @@ router.put('/:userId/edit', isSignedIn, async (req, res) => {
 
         //If the password field is empty, then keep the same hushed password
         if (req.body.password === '') {
-            console.log('theere is no entry for password')
-            console.log('the user is, ', currentUser)
-            req.body.password = currentUser.password
+             req.body.password = currentUser.password
         } else if (password != confirmPassword) {
             req.session.message = `The passwords do not match`
             return res.redirect(`/users/${userId}`)
@@ -64,8 +62,7 @@ router.put('/:userId/edit', isSignedIn, async (req, res) => {
         }
 
         const user = await User.findByIdAndUpdate(userId, req.body)
-        console.log('The updated details are ', user)
-        req.session.message = `Your detials have succesfully been updated: 
+        req.session.message = `Your details have succesfully been updated: 
         <br> New username:  ${username}
         <br> New email:  ${email}`
         return res.redirect(`/users/${userId}`)
@@ -89,8 +86,7 @@ router.get('/:userId/pets', isSignedIn, async (req, res) => {
 router.get('/:userId/services', isSignedIn, async (req, res) => {
     const userId = req.params.userId
     const fullUser = await User.findById(userId) 
-    // res.send('you are correctly working the view pets profile button')
-    res.render('users/servicess.ejs', {user:fullUser})
+    res.render('users/services.ejs', {user:fullUser})
 })
 
 //Export the router

@@ -19,6 +19,9 @@
         <div class="profile-container">
             <h1>Welcome to the your profile page <%= user.username %>
             </h1>
+            <p class="auth-error">
+                <%- (message) %>
+            </p>
             <div class="profile-content">
                 <div class="profile-item">
                     <div class="profile-card">

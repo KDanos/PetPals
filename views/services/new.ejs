@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Service</title>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+<%- include ('../partials/_navbar_KD.ejs') %>
+
+    <body>
+        <div class="form-container-center">
+            <form action="/services" method="POST">
+                <%if (!currentServices || currentServices.length===0){ %>
+                    <p> Your are not currently offering any services</p>
+                    <% } else { %>
+                        <p> Your current services are:</p>
+                        <ul>
+                            <% currentServices.forEach((service)=>{ %>
+                                <li><%= service.name %></li> 
+                                        <% }) %>
+                        </ul>
+
+                        <% } %>
+                            <label for="service-list">Do you want to add more services </label>
+                            
+                            <select name="serviceType" id="serviceType" required >
+                                <option value="" selected disabled>--- Select a type ---</option>
+                                <% serviceList.forEach(service => { %>
+                                  <option value="<%= service._id %>"><%= service.name %></option>
+                                <% }) %>
+                              </select>
+                            
+                            <button class="profile-button" type="submit" id="new-service-button">Add to your
+                                service</button>
+                            <p class="auth-error">
+                                <%= (message) %>
+                            </p>
+            </form>
+        </div>
+    </body>
+
+</html>

@@ -15,16 +15,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isMinder: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    hasPets: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
     pets: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Pet',
