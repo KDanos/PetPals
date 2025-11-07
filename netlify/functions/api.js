@@ -70,7 +70,7 @@ const connect = async ()=>{
     try {
         await mongoose.connect(process.env.MONGODB_URI)
         console.log ('We have succesfully connected to the database')
-        export const handler = serverless(app)
+        
     } catch {
         console.log('We have failed to connect to the database')
     }
@@ -79,3 +79,4 @@ const connect = async ()=>{
 connect()
 
 
+export const handler = serverless(app)
