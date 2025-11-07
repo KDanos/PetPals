@@ -10,26 +10,22 @@ import path from 'path'
 import URL from 'url'
 import methodOverride from 'method-override'
 
-import User from './models/users.js'
-import serviceType from './models/serviceTypes.js'
-
 import authRouter from '../../controllers/auth.js'
 import userRouter from '../../controllers/users.js'
 import petRouter from '../../controllers/pets.js'
 import serviceRouter from '../../controllers/services.js'
 
-import passUserToView from './middleware/pass-user-to-view.js'
-import passMessageToView from './middleware/pass-message-to-view.js'
+import passUserToView from '../../middleware/pass-user-to-view.js'
+import passMessageToView from '../../middleware/pass-message-to-view.js'
 
 
 
 //Import the image
-let landingPageImages = []
-const filename = URL.fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
-const photoPath = path.join(dirname, 'public', 'images', 'Landing Page Images')
-let photos  = fs.readdirSync(photoPath);
-landingPageImages = photos
+const landingPageImages = [
+    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520157/Great_Dane_in_Pool_lzqwtz.jpg',
+    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520156/Goldfish_bbia2w.jpg,'
+]
+
 
 
 //Create the app
@@ -55,7 +51,6 @@ app.use(passMessageToView)
 app.use ('/auth', authRouter)
 app.use ('/users', userRouter)
 app.use('/pets', petRouter)
-// app.use('/carers', carerRouter)
 app.use('/services', serviceRouter)
 //Routes
 
