@@ -2,7 +2,7 @@
 
 A social network platform for pet owners. 
 
-#  Overview
+#  Description
 
 PetPals is a social network designed around pet lovers. Owners can: 
 - show case their pets, with photos and descriptions,
@@ -14,7 +14,7 @@ PetPals is a social network designed around pet lovers. Owners can:
     * pet feeding.
 
 The source code is available on the public gitHub repository <https://github.com/KDanos/PetPals>.
-# Features
+## Features
 
 PetPals offers full CRUD functionality: 
 - Create new users or pets
@@ -22,19 +22,42 @@ PetPals offers full CRUD functionality:
 - Update the information or services of users or pets
 - Delete users or pets
 
-# :alembic: Technology Stack
+## :alembic: Technology Stack
 
-The application has been built on the RESTful principles in javascript, using the MEN stack: 
-- MongoseDB, for data storage
-- EJS for html rendering
-- Node for js framework
+The application has been built on the RESTful principles in **JavaScript**, using the MEN stack, employing session authentication. Key technologies used include:
 
-# Data Model
-There are 2 main models in the application: 
-1. Users
-2. Pets
+- **MongoDB**, for data storage
+- **Express** was used as the application framework
+- **Node.js** is the JavaScript runtime environment to run the code
 
-The ERD below show capture the attributes of the objects, as well as the relationships between them, both for an MVP application, as well as for one with additional enhancements. 
+Key dependencies include: 
+    * **EJS** for HTML rendering
+    * **morgan** for HTTP request logging middleware
+    * **bcrypt** for password hashing 
+    * **Mongoose** for communication with the **MongoDB** database
+    * **express-session** for session management
+    * **connect-mongo** to store session information in the database
+    * **dotenv** to store environment variables
+    * **method-override** for RESTful routing
+     
+    
+
+
+## Data Model
+There are 2 main models in the application, with third supporting one: 
+1. Users: authentication and and authorisation is based on the this model. 
+2. Pets: A key resource for the application
+
+3. ServiceTypes: Supporting model, to define types of services users can provide, rather than 
+
+The interaction betweent the models is captured in the final **Entity Relationship Diagram** (ERD). 
+
+![PetPals ERD](/public/images/README%20images/6.0%20%20PetPal%20ERD.png)
+
+The README section of this documents highlights the desire to allow users to offer their services at personalised prices. A potential ERD for that development is illustrated. 
+![Enhanced Application ERD](/public/images/README%20images/7.0%20Enhanced%20Application%20ERD.png)
+
+The models evolved during th application build. The ERD below capture the initial ERD design for the MVP and stretch targets.
 
 ![MVP ERD](/public/images/README%20images/1.0%20MVP%20ERD.png)
 
@@ -46,7 +69,7 @@ The ERD below show capture the attributes of the objects, as well as the relatio
 The application loads in a landing page, welcoming the user. The following views are available to users, without logging in: 
  * pets index page
  * individual pet page (see future functionality)
- * minder index page
+ * carer index page
  * individual minder page
 
  After users sign up they can log-in and then have options to: 

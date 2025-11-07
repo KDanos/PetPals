@@ -18,7 +18,7 @@
     <%- include ('../partials/_navbar_KD.ejs') %>
         <div class="profile-container">
 
-            <% if(viewUser.equals(user._id)){ %>
+            <% if(user && viewUser.equals(user._id)){ %>
                 <h1>Welcome to the your profile page <%= user.username %>
                 </h1>
                 <% } else { %>
@@ -48,7 +48,7 @@
                                             <%= viewUser.email %>
                                         </span>
                                     </div>
-                                    <% if(viewUser.equals(user._id)){ %>
+                                    <% if(user && viewUser.equals(user._id)){ %>
                                         <a class="profile-button" href='/users/<%=viewUser._id%>/edit'>Edit Profile</a>
                                         <% } %>
                                 </div>
@@ -71,7 +71,7 @@
                                                             <%} %>
                                                 </ul>
                                     </div>
-                                    <% if(viewUser.equals(user._id)){ %>
+                                    <% if(user && viewUser.equals(user._id)){ %>
                                         <a class="profile-button" href='/users/<%=viewUser._id%>/pets'>View/Edit
                                             Pets</a>
                                         <% } %>
@@ -93,7 +93,7 @@
                                                 </ul>
                                                 <%} %>
                                     </div>
-                                    <% if(viewUser.equals(user._id)){ %>
+                                    <% if(user && viewUser.equals(user._id)){ %>
                                         <a class="profile-button" href='/services/new'>Edit Services</a>
                                         <% } %>
                                 </div>

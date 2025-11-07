@@ -49,7 +49,7 @@
                             </span>
                         </div>
 
-                        <% if(pet.owner._id == user._id) { %>
+                        <% if(user && pet.owner._id == user._id) { %>
                              <a class="profile-button" href='/pets/<%=pet._id%>/edit'>Edit Information</a>
                             <%} %>
                                
@@ -73,7 +73,7 @@
                                                 <%} %>
                                     </ul>
                         </div>
-                        <% if(pet.owner._id == user._id) { %>
+                        <% if(user && pet.owner._id == user._id) { %>
                         <a class="profile-button" href='/users/<%=user._id%>/pets'>View/Edit Carers</a>
                         <% } %>
                     </div>
