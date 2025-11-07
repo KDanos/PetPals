@@ -23,7 +23,22 @@ import passMessageToView from '../../middleware/pass-message-to-view.js'
 //Import the image
 const landingPageImages = [
     'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520157/Great_Dane_in_Pool_lzqwtz.jpg',
-    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520156/Goldfish_bbia2w.jpg,'
+    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520156/Goldfish_bbia2w.jpg',
+    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520156/Dog_and_Parrot_j24mpa.jpg',
+    'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520152/Cats_dog_and_rabbit_tughhz.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520151/Cat_and_goldfish_raxvxx.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520151/Cat_and_goldfish_raxvxx.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520150/Three_kittens_bplxvd.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520148/Something_wmrlym.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520147/Running_pair_of_Goldies_bsnj4y.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520147/Rabbits_lxmyn7.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520145/Pig_and_Bird_v8glds.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520145/Parrot_mey1hd.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520144/Pair_of_dogs_with_stick_kjcwzd.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520142/Line_of_Parrots_ovwjl8.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520142/Kittens_j7p6qe.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520141/Huge_ears_gi0brr.jpg',
+'https://res.cloudinary.com/dxmbdwavt/image/upload/v1762520141/Hamster_on_a_swing_qrcg7j.jpg',
 ]
 
 
