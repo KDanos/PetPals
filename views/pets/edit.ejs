@@ -19,7 +19,7 @@
             <form action="/pets/<%= pet._id %>?_method=PUT" method="POST">
                 <label for="animal-name">Name:</label>
                 <input type="text" id="animal-name" name="name" value="<%= pet.name %>" required>
-                <label for="animal">email:</label>
+                <label for="animal">Animal:</label>
                 <input type="animal" id="animal" name="animal" value="<%= pet.animal %>" required>
                 <button class="profile-button" type="submit" id="edit_user-details-button">Update Details</button>
                 <p class="auth-error">

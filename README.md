@@ -82,7 +82,15 @@ The following views are available to users, without logging in:
  After users sign up they can log-in and then have options to: 
  * update their own information
  * add pets and update their information
- * link their pets to a minder
+ * update the services they offer to other users
+ * as a future enhancement, link users as carers to their pets
+
+ These features are protected both on the client and server routes. 
+ On the server side, the signed in user must match the resource (user, pet or service) for the route to activate. 
+ On the client side, the buttons to initiate the routes are not available, as per examples below
+
+![Authorised Pet Edit Page](/public/images/README%20images/10.0%20Authorised%20Edit%20Pet%20Page.png)
+![Un-authorised Pet Edit Page](/public/images/README%20images/11.0%20Unauthorised%20Edit%20Pet%20Page.png)
 
 ## Wireframes
 
@@ -109,6 +117,8 @@ To make changes to the code, please clone the github repository. To succesfully 
 
 ## Known bugs
 
+- when a user deletes their profile, their pets are **NOT** deleted from the Pet model, leaving pets orphaned. Orphaned pets still have ObjectId on the owner property. The ObjectId is not in the User model anymore, throwing up errors. 
+
 
 ## Additional functionality
 
@@ -120,11 +130,13 @@ Potential upgrades and further development of the application include:
 - add photo of the pet
 - currently all flash messages, both error and success appear in red. It will be useful to have succesful messages appear in a different color
 - users should be able to attach a cost to the services they provide
+-make the **Owner**, under the **pet information page**a hyperlink to the users profile, consistent with other other places in the application.
 
 ### Carers
-- when a user is adding a new serice to their profile, they are offered all the available serviceTypes defined in the model. That list should be filtered to exclude the services the user is already adding
+- when a user is adding a new serice to their profile, they are offered all the available serviceTypes defined in the model. That list should be filtered to exclude the services the user is already adding.
 
 ### Pet owners
 - update stories with pictures of their activities.
 - chose whether the pet's index page is visible to users that are not logged-in
+- link to other users as minders for their pets
 

@@ -55,7 +55,9 @@
                                     <%= animal.animal %>
                                 </div>
                                 <div class="profile-value">
+                                    <% if (animal.owner){ %>
                                     <a href="/users/<%=animal.owner._id%>" ><%= animal.owner.username %></a>              
+                                    <% } %>
                                 </div>
                             </a>
                         </div>
