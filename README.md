@@ -39,8 +39,8 @@ Key dependencies include:
     * **connect-mongo** to store session information in the database
     * **dotenv** to store environment variables
     * **method-override** for RESTful routing
+    * **Bootsrap 5.3** for responsive front end design. The library was not imported, rather it was linked in the HTML render .ejs files.
      
-    
 
 
 ## Data Model
@@ -66,7 +66,14 @@ The models evolved during th application build. The ERD below capture the initia
 
 # UI
 
-The application loads in a landing page, welcoming the user. The following views are available to users, without logging in: 
+The application loads in a landing page, welcoming the user. **Bootstrap 5.3** was employed to keep the landing page responsive. 
+
+![Landing Page Full Screen](/public/images/README%20images/8.0%20Landing%20Page%20Full%20Screen.png)
+
+![Landing Page iphone-14](/public/images/README%20images/9.0%20Landing%20Page%20iphone-14.png)
+
+
+The following views are available to users, without logging in: 
  * pets index page
  * individual pet page (see future functionality)
  * carer index page

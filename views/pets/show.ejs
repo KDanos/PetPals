@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <%= pet.name %>
     </title>
@@ -24,64 +24,65 @@
                 <%- (message) %>
             </p>
             <div class="profile-content">
-                <div class="profile-item">
-                    <div class="profile-card">
-                        <div class="profile-icon">👤</div>
+                <div class="row g-3">
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="profile-card">
+                            <div class="profile-icon">👤</div>
 
-                        <div class="profile-info">
-                            <span class="profile-label">Name: </span>
-                            <span class="profile-value">
-                                <%= pet.name %>
-                            </span>
+                            <div class="profile-info">
+                                <span class="profile-label">Name: </span>
+                                <span class="profile-value">
+                                    <%= pet.name %>
+                                </span>
+                            </div>
+
+                            <div class="profile-info">
+                                <span class="profile-label">Animal: </span>
+                                <span class="profile-value">
+                                    <%= pet.animal %>
+                                </span>
+                            </div>
+
+                            <div class="profile-info">
+                                <span class="profile-label">Owner: </span>
+                                <span class="profile-value">
+                                    <%= pet.owner.username %>
+                                </span>
+                            </div>
+
+                            <% if(user && pet.owner._id==user._id) { %>
+                                <a class="profile-button" href='/pets/<%=pet._id%>/edit'>Edit Information</a>
+                                <%} %>
                         </div>
-
-                        <div class="profile-info">
-                            <span class="profile-label">Animal: </span>
-                            <span class="profile-value">
-                                <%= pet.animal %>
-                            </span>
-                        </div>
-
-                        <div class="profile-info">
-                            <span class="profile-label">Owner: </span>
-                            <span class="profile-value">
-                                <%= pet.owner.username %>
-                            </span>
-                        </div>
-
-                        <% if(user && pet.owner._id == user._id) { %>
-                             <a class="profile-button" href='/pets/<%=pet._id%>/edit'>Edit Information</a>
-                            <%} %>
-                               
                     </div>
                     <!-- **********************new card************************************** -->
-                    <div class="profile-card">
-                        <div class="profile-icon">🐾</div>
-                        <div class="profile-info">
-                            <% if (!pet.minder || pet.minder.length===0){ %>
-                                <p> you have not carers to call upon </p>
-                                <% } else { %>
-                                    <p> here are you pets</p>
-                                    <ul>
-                                        <% pet.minders.forEach((person)=>{ %>
-                                            <li>
-                                                <a href="/pets/<%=person._id%>">
-                                                    <%= person.username %>
-                                                </a>
-                                            </li>
-                                            <% }) %>
-                                                <%} %>
-                                    </ul>
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="profile-card">
+                            <div class="profile-icon">🐾</div>
+                            <div class="profile-info">
+                                <% if (!pet.minder || pet.minder.length===0){ %>
+                                    <p> You have no carers to call upon </p>
+                                    <% } else { %>
+                                        <p> Here are your carers</p>
+                                        <ul>
+                                            <% pet.minders.forEach((person)=>{ %>
+                                                <li>
+                                                    <a href="/pets/<%=person._id%>">
+                                                        <%= person.username %>
+                                                    </a>
+                                                </li>
+                                                <% }) %>
+                                                    <%} %>
+                                        </ul>
+                            </div>
+                            <% if(user && pet.owner._id==user._id) { %>
+                                <a class="profile-button" href='/users/<%=user._id%>/pets'>View/Edit Carers</a>
+                                <% } %>
                         </div>
-                        <% if(user && pet.owner._id == user._id) { %>
-                        <a class="profile-button" href='/users/<%=user._id%>/pets'>View/Edit Carers</a>
-                        <% } %>
                     </div>
-                    <!-- **********************new card************************************** -->
-
-
                 </div>
             </div>
+        </div>
 </body>
 
 </html>

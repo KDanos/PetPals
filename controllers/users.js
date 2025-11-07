@@ -11,7 +11,7 @@ const router = express.Router()
 //Has replaced the 'show minders'
 router.get('/',  async (req, res) => {
     const allUsers = await User.find()
-    res.render('users/index-v2.ejs', { allUsers })
+    res.render('users/index.ejs', { allUsers })
 })
 
 //Show Page, GET

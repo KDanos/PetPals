@@ -29,7 +29,7 @@ router.post('', isSignedIn, async (req, res) => {
     const serviceTypeId = req.body.serviceType
     const serviceType = await ServiceType.findById(serviceTypeId)
 
-    if (!ServiceType) {
+    if (!serviceType) {
         req.session.message = 'Service not found'
         return res.redirect('services/new')
     }
@@ -37,7 +37,7 @@ router.post('', isSignedIn, async (req, res) => {
     //Update the user to include the new service
     const updatedUser = await User.findByIdAndUpdate(userId, { $push: { services: serviceTypeId } })
 
-    req.session.message = `Your have succesfully added a new service: 
+    req.session.message = `You have successfully added a new service: 
     <br>${serviceType.name}`
 
     res.redirect(`/users/${userId}`)
@@ -57,12 +57,18 @@ router.get('/:userId/:serviceId/delete', isSignedIn, async (req, res) => {
     const userId = req.params.userId
     const serviceId = req.params.serviceId
     try {
+        const serviceType = await ServiceType.findById(serviceId)
+        if (!serviceType){
+            req.session.message = 'Service not found'
+            return res.redirect(`/users/${userId}`)
+        }
         await User.findByIdAndUpdate(userId, { $pull: { services: serviceId } })
-        console.log('the ServiceType is: ',ServiceType)
-        req.session.message = `${ServiceType.serviceId} has succesfully been deleted from your profile`
+
+        req.session.message = `${serviceType.name} has successfully been deleted from your profile`
         res.redirect(`/users/${userId}`)
     } catch (error) {
-
+        req.session.message = 'An error has occurred while deleting this service.'
+        res.redirect(`/users/${userId}`)
     }
 
 })

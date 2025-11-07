@@ -23,13 +23,13 @@
         </div>
 
         <div class="carers-container">
-            <div class="row">
+            <div class="row g-3">
                 <% allUsers.forEach(person=>{ %>
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="carer-container">
                             <a href="/users/<%= person._id %>" class="carer-card-link">
                                 <div class="carer-icon-large">🐾</div>
-                                <h3>
+                                <h3 class="text-center">
                                     <%= person.username %>
                                 </h3>
                                 <div class="carer-email">
